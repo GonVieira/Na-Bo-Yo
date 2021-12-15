@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class Hand {
     private ArrayList<Card> hand;
-    private final int handSizeLimit = 5;
+
 
     public Hand() {
         hand = new ArrayList<>();
@@ -12,17 +12,16 @@ public class Hand {
 
     //Draw a card from the deck to the hand.
     public void addCardToHand (Card card) {
-        if (hand.size() < handSizeLimit) {
             hand.add(card);
-        }
+    }
+    public Card playCard(){
+        Card card = hand.get(0);
+        hand.remove(0);
+        return card;
     }
 
 
     public ArrayList<Card> getHand() {
         return hand;
-    }
-
-    public int getHandSizeLimit() {
-        return handSizeLimit;
     }
 }

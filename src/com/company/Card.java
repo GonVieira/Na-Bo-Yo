@@ -1,7 +1,7 @@
 package com.company;
 
 
-public class Card {
+public abstract class Card {
     private String name;
 
     public Card() {
@@ -11,6 +11,10 @@ public class Card {
     //Method for printing every characteristic.
     public void printAll () {
         System.out.print(name + " ----> ");
+    }
+
+    public String getName() {
+        return name;
     }
 
     public void setName(String name) {

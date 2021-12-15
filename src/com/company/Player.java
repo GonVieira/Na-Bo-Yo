@@ -7,6 +7,7 @@ public class Player {
     private Hand hand;
     private Graveyard graveyard;
     private Field field;
+    private final int firstCardsDrawLimit = 5;
 
     public Player (String name) {
         this.name = name;
@@ -15,12 +16,13 @@ public class Player {
         this.graveyard = new Graveyard();
     }
 
-    //Print each player deck with the cards information.
+    //Print each player deck with the card information.
     public void printDeck () {
         System.out.println("----------------------" + name + "'s deck" + "----------------------");
         for (int i = 0; i < deck.getDeck().size(); i++) {
             deck.getDeck().get(i).printAll();
         }
+        System.out.println("");
     }
 
     //Print each player hands with the card information.
@@ -29,11 +31,12 @@ public class Player {
         for (int i = 0; i < hand.getHand().size(); i++) {
             hand.getHand().get(i).printAll();
         }
+        System.out.println("");
     }
 
     //The cards to be placed in the hand of each player in the beginning of the game.
     public void firstCards () {
-        for (int i = 0; i < hand.getHandSizeLimit(); i++) {
+        for (int i = 0; i < firstCardsDrawLimit; i++) {
             cardsToHand();
         }
     }

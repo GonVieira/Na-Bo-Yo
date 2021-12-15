@@ -1,11 +1,11 @@
 package com.company;
 
-import java.util.ArrayList;
 
 public class Monster extends Card {
     private String name;
     private int attackPower;
     private int defensePower;
+    private boolean faceUp;
 
 
     public Monster(String name, int attackPower, int defensePower) {
