@@ -5,7 +5,7 @@ public class Monster extends Card {
     private String name;
     private int attackPower;
     private int defensePower;
-    private boolean faceUp;
+    private boolean attMode;
 
 
     public Monster(String name, int attackPower, int defensePower) {
@@ -19,5 +19,9 @@ public class Monster extends Card {
         super.printAll();
         System.out.print("Att: " + attackPower + " ");
         System.out.println("Def: " + defensePower);
+    }
+
+    public boolean flip() {
+        return !attMode;
     }
 }

@@ -9,13 +9,6 @@ public class Main {
         Game game = new Game(player1,player2);
         game.gameStart();
 
-        /*
-        player1.printDeck();
-        player2.printDeck();
-
-        player1.printHand();
-        player2.printHand();
-         */
 
         game.gameplay();
     }

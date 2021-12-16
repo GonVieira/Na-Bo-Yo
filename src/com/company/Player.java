@@ -14,6 +14,7 @@ public class Player {
         this.deck = new Deck();
         this.hand = new Hand();
         this.graveyard = new Graveyard();
+        this.field = new Field();
     }
 
     //Print each player deck with the card information.
@@ -30,6 +31,14 @@ public class Player {
         System.out.println("----------------------" + name + "'s Cards in Hand" + "----------------------");
         for (int i = 0; i < hand.getHand().size(); i++) {
             hand.getHand().get(i).printAll();
+        }
+        System.out.println("");
+    }
+
+    public void printField () {
+        System.out.println("----------------------" + name + "'s Cards in Hand" + "----------------------");
+        for (int i = 0; i < field.getField().size(); i++) {
+            field.getField().get(i).printAll();
         }
         System.out.println("");
     }

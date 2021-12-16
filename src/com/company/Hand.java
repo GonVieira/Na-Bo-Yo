@@ -14,9 +14,9 @@ public class Hand {
     public void addCardToHand (Card card) {
             hand.add(card);
     }
-    public Card playCard(){
-        Card card = hand.get(0);
-        hand.remove(0);
+
+    public Card playCard(Card card){
+        hand.remove(card);
         return card;
     }
 
