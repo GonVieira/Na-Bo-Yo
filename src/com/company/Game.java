@@ -68,34 +68,54 @@ public class Game {
                 System.out.println("Please write \"Draw\" to advance to the next phase!");
             }
         }
-        sc.close();
     }
 
     public void mainPhase1(Player turnPlayer) {
         System.out.println("--------------------------- Turn " + turns + " - " + " Main Phase 1! " + "--------------------------- \n");
         Scanner sc = new Scanner(System.in);
         System.out.println(turnPlayer.getName() + " please choose your move for this phase regarding the following options! \n");
-        if (turnPlayer.getField().getField().size() == 0) {
-            System.out.println("SUMMON CARD");
+        if (turnPlayer.getField().getMonsterZone().size() == 0) {
+            System.out.println("SUMMON MONSTER");
         } else {
-            System.out.println("                    SUMMON CARD         FLIP CARD         \n");
+            System.out.println("               SUMMON MONSTER         CHANGE MONSTER BATTLE POSITION       \n");
         }
         String move = sc.nextLine();
 
-        while (true) {
-            if (move.equalsIgnoreCase("summon card")) {
-                System.out.println("Please choose a card from your hands \n");
-                turnPlayer.printHand();
-                String monster = sc.nextLine();
-                for (int i = 0; i < turnPlayer.getHand().getHand().size(); i++) {
-                    if (monster.equalsIgnoreCase(turnPlayer.getHand().getHand().get(i).getName())) {
-                        Card card = turnPlayer.getHand().getHand().get(i);
-                        turnPlayer.getField().getField().add(turnPlayer.getHand().playCard(card));
-                        break;
-                    }
+        while (!(move.equalsIgnoreCase("summon monster") || move.equalsIgnoreCase("summon") || move.equalsIgnoreCase("flip card"))) {
+            System.out.println("Please write a valid answer!");
+            move = sc.nextLine();
+        }
+        //IF SUMMON MONSTER
+        if (move.equalsIgnoreCase("summon monster") || (move.equalsIgnoreCase("summon"))) {
+            System.out.println("Please choose a monster from your hands \n");
+            turnPlayer.printHand();
+            String monsterName = sc.nextLine();
+
+            for (int i = 0; i < turnPlayer.getHand().getHand().size(); i++) {
+                while (!turnPlayer.checkIfThereIsMonsterInHand(monsterName)){
+                    System.out.println("Please write a valid monster name to proceed to the next phase!");
+                    monsterName = sc.nextLine();
                 }
+                if (monsterName.equalsIgnoreCase(turnPlayer.getHand().getHand().get(i).getName())) {
+                    Card card = turnPlayer.getHand().getHand().get(i);
+                    turnPlayer.getField().getMonsterZone().add((Monster) turnPlayer.getHand().playCard(card));
+                    System.out.println("Attack mode or Defence mode?");
+                    String battleMode = sc.nextLine();
+                    int size = turnPlayer.getField().getMonsterZone().size();
+                    if (battleMode.equalsIgnoreCase("Attack") || (battleMode.equalsIgnoreCase("Attack Mode"))) {
+                        turnPlayer.getField().getMonsterZone().get(size - 1).setMode("Attack");
+                        turnPlayer.printField();
+                    }
+                    if (battleMode.equalsIgnoreCase("Defence") || (battleMode.equalsIgnoreCase("Defence Mode"))) {
+                        turnPlayer.getField().getMonsterZone().get(size).setMode("Defence");
+                    }
+                    break;
+                }
+                //System.out.println("Please write a valid card name to advance to the next phase!");
             }
-            System.out.println("Please write a valid card name to advance to the next phase!");
+        }
+        if (move.equalsIgnoreCase("flip card")) {
+            System.out.println("Select the Card you want to change battle mode");
         }
     }
 

@@ -13,6 +13,10 @@ public abstract class Card {
         System.out.print(name + " ----> ");
     }
 
+    public void printAll2() {
+
+    }
+
     public String getName() {
         return name;
     }

@@ -5,7 +5,6 @@ public class Player {
     private int HP = 8000;
     private Deck deck;
     private Hand hand;
-    private Graveyard graveyard;
     private Field field;
     private final int firstCardsDrawLimit = 5;
 
@@ -13,7 +12,6 @@ public class Player {
         this.name = name;
         this.deck = new Deck();
         this.hand = new Hand();
-        this.graveyard = new Graveyard();
         this.field = new Field();
     }
 
@@ -36,9 +34,9 @@ public class Player {
     }
 
     public void printField () {
-        System.out.println("----------------------" + name + "'s Cards in Hand" + "----------------------");
-        for (int i = 0; i < field.getField().size(); i++) {
-            field.getField().get(i).printAll();
+        System.out.println("----------------------" + name + "'s Cards in Field" + "----------------------");
+        for (int i = 0; i < field.getMonsterZone().size(); i++) {
+            field.getMonsterZone().get(i).printAll2();
         }
         System.out.println("");
     }
@@ -55,7 +53,14 @@ public class Player {
         hand.addCardToHand(deck.drawCard());
     }
 
-
+    public boolean checkIfThereIsMonsterInHand (String monsterName) {
+        for (int i = 0; i < hand.getHand().size(); i++) {
+            if (getHand().getHand().get(i).getName().equalsIgnoreCase(monsterName)) {
+                return true;
+            }
+        }
+        return false;
+    }
 
     public void setDeck(Deck deck) {
         this.deck = deck;
@@ -85,10 +90,6 @@ public class Player {
         return hand;
     }
 
-
-    public Graveyard getGraveyard() {
-        return graveyard;
-    }
 
     public Field getField() {
         return field;
