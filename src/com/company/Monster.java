@@ -5,14 +5,16 @@ public class Monster extends Card {
     private String name;
     private int attackPower;
     private int defensePower;
-    private String mode;
+    private String position;
+    private boolean attacked;
 
 
     public Monster(String name, int attackPower, int defensePower) {
         setName(name);
         this.attackPower = attackPower;
         this.defensePower = defensePower;
-        this.mode = mode;
+        this.position = position;
+        this.attacked = attacked;
     }
 
     @Override
@@ -27,22 +29,38 @@ public class Monster extends Card {
         super.printAll();
         System.out.print("Att: " + attackPower + " ");
         System.out.print("Def: " + defensePower + " ");
-        System.out.println("Mode: " + mode);
+        System.out.println("Position: " + position);
     }
 
-    public String getMode() {
-        return mode;
+    public String getPosition() {
+        return position;
     }
 
     public void setMode(String mode) {
-        this.mode = mode;
+        this.position = mode;
     }
 
     public void changeBattlePosition() {
-        if (mode.equalsIgnoreCase("Attack")) {
+        if (position.equalsIgnoreCase("Attack")) {
             setMode("Defence");
         } else {
             setName("Attack");
         }
+    }
+
+    public int getAttackPower() {
+        return attackPower;
+    }
+
+    public int getDefensePower() {
+        return defensePower;
+    }
+
+    public Boolean getAttacked(){
+        return attacked;
+    }
+
+    public void setHaveAttacked(Boolean attacked) {
+        this.attacked = attacked;
     }
 }

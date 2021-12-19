@@ -13,7 +13,8 @@ public class Field {
 
     }
 
-    public void removeMonster (Monster monster) {
+    public void removeMonsterFromField (Monster monster) {
+        graveyard.add(monster);
         monsterZone.remove(monster);
     }
 

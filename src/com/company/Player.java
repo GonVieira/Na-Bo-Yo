@@ -2,7 +2,7 @@ package com.company;
 
 public class Player {
     private String name;
-    private int HP = 8000;
+    private int HP = 5000;
     private Deck deck;
     private Hand hand;
     private Field field;
@@ -17,7 +17,7 @@ public class Player {
 
     //Print each player deck with the card information.
     public void printDeck () {
-        System.out.println("----------------------" + name + "'s deck" + "----------------------");
+        System.out.println("----------------- " + name + "'s deck" + " -----------------    \n");
         for (int i = 0; i < deck.getDeck().size(); i++) {
             deck.getDeck().get(i).printAll();
         }
@@ -26,7 +26,7 @@ public class Player {
 
     //Print each player hands with the card information.
     public void printHand () {
-        System.out.println("----------------------" + name + "'s Cards in Hand" + "----------------------");
+        System.out.println("----------------- " + name + "'s Cards in Hand" + " ------------------    \n");
         for (int i = 0; i < hand.getHand().size(); i++) {
             hand.getHand().get(i).printAll();
         }
@@ -34,7 +34,7 @@ public class Player {
     }
 
     public void printField () {
-        System.out.println("----------------------" + name + "'s Cards in Field" + "----------------------");
+        System.out.println("------------------ " + name + "'s Cards in Field" + " ------------------    \n");
         for (int i = 0; i < field.getMonsterZone().size(); i++) {
             field.getMonsterZone().get(i).printAll2();
         }
@@ -56,6 +56,24 @@ public class Player {
     public boolean checkIfThereIsMonsterInHand (String monsterName) {
         for (int i = 0; i < hand.getHand().size(); i++) {
             if (getHand().getHand().get(i).getName().equalsIgnoreCase(monsterName)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean checkIfThereIsMonsterInField (String monsterName) {
+        for (int i = 0; i < field.getMonsterZone().size(); i++) {
+            if (getField().getMonsterZone().get(i).getName().equalsIgnoreCase(monsterName)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean checkIfMonsterCanAttack () {
+        for (int i = 0; i < field.getMonsterZone().size(); i++) {
+            if (!field.getMonsterZone().get(i).getAttacked()) {
                 return true;
             }
         }
