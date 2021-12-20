@@ -1,5 +1,7 @@
-package com.company;
+package com.company.ThePlayer.TheCards;
 
+
+import com.company.ThePlayer.Card;
 
 public class Monster extends Card {
     private String name;
@@ -49,11 +51,12 @@ public class Monster extends Card {
         this.position = mode;
     }
 
+    //Method to change the battle position
     public void changeBattlePosition() {
         if (position.equalsIgnoreCase("Attack")) {
             setMode("Defence");
         } else {
-            setName("Attack");
+            setMode("Attack");
         }
     }
 

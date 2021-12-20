@@ -1,4 +1,6 @@
-package com.company;
+package com.company.ThePlayer;
+
+import com.company.ThePlayer.TheCards.Monster;
 
 import java.util.ArrayList;
 
@@ -13,6 +15,7 @@ public class Field {
 
     }
 
+    //Method to remove a monster card from field.
     public void removeMonsterFromField (Monster monster) {
         graveyard.add(monster);
         monsterZone.remove(monster);

@@ -1,4 +1,7 @@
-package com.company;
+package com.company.ThePlayer.TheCards;
+
+import com.company.ThePlayer.Card;
+import com.company.ThePlayer.TheCards.Monster;
 
 import java.util.ArrayList;
 import java.util.List;

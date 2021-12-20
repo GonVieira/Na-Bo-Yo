@@ -1,4 +1,4 @@
-package com.company;
+package com.company.ThePlayer;
 
 import java.util.ArrayList;
 
@@ -19,7 +19,6 @@ public class Hand {
         hand.remove(card);
         return card;
     }
-
 
     public ArrayList<Card> getHand() {
         return hand;

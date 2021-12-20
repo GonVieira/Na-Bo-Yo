@@ -1,4 +1,9 @@
-package com.company;
+package com.company.TheGame;
+
+import com.company.ThePlayer.TheCards.CardList;
+import com.company.ThePlayer.Card;
+import com.company.ThePlayer.Player;
+import com.company.ThePlayer.TheCards.Monster;
 
 import java.util.Random;
 import java.util.Scanner;
@@ -15,6 +20,7 @@ public class Game {
     public static final String ANSI_RED_BACKGROUND = "\u001B[41m";
     public static final String ANSI_RESET = "\u001B[0m";
     public static final String ANSI_RED = "\u001B[31m";
+
 
     public Game (Player player1, Player player2) {
         this.player1 = player1;
@@ -102,7 +108,7 @@ public class Game {
         }
         String move = sc.nextLine();
 
-        while (!(move.equalsIgnoreCase("summon monster") || move.equalsIgnoreCase("summon") || move.equalsIgnoreCase("Change battle position"))) {
+        while (!(move.equalsIgnoreCase("summon monster") || move.equalsIgnoreCase("summon") || move.equalsIgnoreCase("Change battle position") || move.equalsIgnoreCase("Change position"))) {
             System.out.println("Please write a valid answer!");
             move = sc.nextLine();
         }
@@ -111,7 +117,7 @@ public class Game {
             System.out.println("Please choose a monster from your hands. \n");
             turnPlayer.printHand();
             String monsterName = sc.nextLine();
-            while (!turnPlayer.checkIfThereIsMonsterInHand(monsterName)){
+            while (!turnPlayer.checkIfThereIsMonsterInHand(monsterName)) {
                 System.out.println("Please write a valid monster name to proceed to the next phase!");
                 monsterName = sc.nextLine();
             }
@@ -123,7 +129,7 @@ public class Game {
                     System.out.println("Attack mode or Defence mode?");
                     String battlePosition = sc.nextLine();
                     int size = turnPlayer.getField().getMonsterZone().size();
-                    while (!(battlePosition.equalsIgnoreCase("attack") || battlePosition.equalsIgnoreCase("attack mode") || battlePosition.equalsIgnoreCase("defence") || battlePosition.equalsIgnoreCase("defence mode"))){
+                    while (!(battlePosition.equalsIgnoreCase("attack") || battlePosition.equalsIgnoreCase("attack mode") || battlePosition.equalsIgnoreCase("defence") || battlePosition.equalsIgnoreCase("defence mode"))) {
                         System.out.println("Please write a valid answer!!");
                         battlePosition = sc.nextLine();
                     }
@@ -137,7 +143,8 @@ public class Game {
                 }
             }
         }
-        if (move.equalsIgnoreCase("Change battle position")) {
+        //IF CHANGE POSITION
+        if (move.equalsIgnoreCase("Change battle position") || move.equalsIgnoreCase("Change position")) {
             turnPlayer.printField();
             System.out.println("Select the Monster you want to change battle position.");
             String monsterName = sc.nextLine();
@@ -153,6 +160,7 @@ public class Game {
         }
     }
 
+    //Method for the battle phase
     public void battlePhase() {
         if (turnPlayer.getName().equalsIgnoreCase(player1.getName())) {
             System.out.println(ANSI_PURPLE_BACKGROUND + "                             Turn " + turns + " - " + " Battle phase! " + "                            \n" + ANSI_RESET);
@@ -224,6 +232,7 @@ public class Game {
         }
     }
 
+    //Method for the beginning of the battle phase so that the monsters can attack.
     public void startStep() {
         for (int i = 0; i < turnPlayer.getField().getMonsterZone().size(); i++) {
             if (turnPlayer.getField().getMonsterZone().get(i).getPosition().equalsIgnoreCase("Defence")) {
@@ -232,7 +241,6 @@ public class Game {
                 turnPlayer.getField().getMonsterZone().get(i).setHaveAttacked(false);
             }
         }
-
         if (turnPlayer.equals(player1)) {
             player2.printField();
         } else {
@@ -241,6 +249,7 @@ public class Game {
         turnPlayer.printField();
     }
 
+    //Method with the attack properties
     public void damageStep(Monster attacker, Monster defender) {
         System.out.println(turnPlayer.getName() + " attacked " + opponent.getName() + "'s " + defender.getName() + " with " + attacker.getName() + "." );
         if (defender.getPosition().equalsIgnoreCase("attack")) {

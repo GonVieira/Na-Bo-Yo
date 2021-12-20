@@ -1,8 +1,8 @@
-package com.company;
+package com.company.ThePlayer;
 
 public class Player {
     private String name;
-    private int HP = 5000   ;
+    private int HP = 8000   ;
     private Deck deck;
     private Hand hand;
     private Field field;
@@ -24,23 +24,25 @@ public class Player {
         System.out.println("");
     }
 
-    //Print each player hands with the card information.
+    //Print the player hands with the card information.
     public void printHand () {
         System.out.println("----------------- " + name + "'s Cards in Hand" + " ------------------    \n");
         for (int i = 0; i < hand.getHand().size(); i++) {
             hand.getHand().get(i).printAll();
         }
-        System.out.println("");
+        System.out.println("-------------------------------------------------------------------------");
     }
 
+    //Method for printing the player field with the monster information
     public void printField () {
         System.out.println("------------------ " + name + "'s Cards in Field" + " ------------------    \n");
         for (int i = 0; i < field.getMonsterZone().size(); i++) {
             field.getMonsterZone().get(i).printAll2();
         }
-        System.out.println("");
+        System.out.println("------------------------------------------------------------------------");
     }
 
+    //Method for printing the monster with important information during the battle phase.
     public void printFieldDuringBattle () {
         System.out.println("------------------ " + name + "'s Cards in Field" + " ------------------    \n");
         for (int i = 0; i < field.getMonsterZone().size(); i++) {
@@ -61,6 +63,7 @@ public class Player {
         hand.addCardToHand(deck.drawCard());
     }
 
+    //Method for checking if there is a monster on the player hand with the given name.
     public boolean checkIfThereIsMonsterInHand (String monsterName) {
         for (int i = 0; i < hand.getHand().size(); i++) {
             if (getHand().getHand().get(i).getName().equalsIgnoreCase(monsterName)) {
@@ -70,6 +73,7 @@ public class Player {
         return false;
     }
 
+    //Method for checking if there is a monster on the field with the given name.
     public boolean checkIfThereIsMonsterInField (String monsterName) {
         for (int i = 0; i < field.getMonsterZone().size(); i++) {
             if (getField().getMonsterZone().get(i).getName().equalsIgnoreCase(monsterName)) {
@@ -79,6 +83,7 @@ public class Player {
         return false;
     }
 
+    //Method for checking if the monster can attack
     public boolean checkIfMonsterCanAttack () {
         for (int i = 0; i < field.getMonsterZone().size(); i++) {
             if (!field.getMonsterZone().get(i).getAttacked()) {
