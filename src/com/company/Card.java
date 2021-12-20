@@ -17,6 +17,10 @@ public abstract class Card {
 
     }
 
+    public void printAll3() {
+
+    }
+
     public String getName() {
         return name;
     }
@@ -24,4 +28,6 @@ public abstract class Card {
     public void setName(String name) {
         this.name = name;
     }
+
+
 }

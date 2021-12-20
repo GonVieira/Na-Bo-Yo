@@ -31,13 +31,13 @@ public class Game {
 
     //The game plays until the conditions to stop the loo are met.
     public void gameplay() {
-        while (player1.getHP() > 0 && player2.getHP() > 0 || player1.getDeck().getDeck().size() == 0 || player2.getDeck().getDeck().size() == 0) {
+        while (player1.getHP() > 0 && player2.getHP() > 0 && player1.getDeck().getDeck().size() > 0 && player2.getDeck().getDeck().size() > 0) {
             gameTurn(turns++);
         }
         if (player1.getHP() <= 0 || player1.getDeck().getDeck().size() == 0) {
-            System.out.println(player2.getName() + " WON!!!");
+            System.out.println(ANSI_RED_BACKGROUND + player2.getName() + " WON!!!" + ANSI_RESET);
         } else {
-            System.out.println(player1.getName() + " WON!!!");
+            System.out.println(ANSI_PURPLE_BACKGROUND + player1.getName() + " WON!!!" + ANSI_RESET);
         }
     }
 
@@ -190,11 +190,12 @@ public class Game {
                                     opponent.printField();
                                     if (opponent.getField().getMonsterZone().size() == 0) {
                                         System.out.println(opponent.getName() + " has no monsters in their field. You can attack your opponent directly!");
-                                        int dmg = getOpponent().getHP() - attacker.getAttackPower();
+                                        int dmg = attacker.getAttackPower();
                                         opponent.setHP(opponent.getHP() - dmg);
                                         System.out.println("DIRECT HIT!!");
                                         System.out.println(getOpponent().getName() + " lost " + dmg + " HP." + ANSI_RED + opponent.getHP() + " left!" + ANSI_RESET);
                                         attacker.setHaveAttacked(true);
+                                        turnPlayer.printFieldDuringBattle();
                                     } else {
                                         System.out.println("Choose one of your opponent monsters that you want to attack.");
                                         String targetName = sc.nextLine();
@@ -206,10 +207,13 @@ public class Game {
                                             if (opponent.getField().getMonsterZone().get(j).getName().equalsIgnoreCase(targetName)) {
                                                 Monster defender = opponent.getField().getMonsterZone().get(j);
                                                 damageStep(attacker, defender);
-
+                                                opponent.printFieldDuringBattle();
+                                                turnPlayer.printFieldDuringBattle();
+                                                break;
                                             }
                                         }
                                     }
+                                    break;
                                 }
                             }
                         }
@@ -222,7 +226,11 @@ public class Game {
 
     public void startStep() {
         for (int i = 0; i < turnPlayer.getField().getMonsterZone().size(); i++) {
-            turnPlayer.getField().getMonsterZone().get(i).setHaveAttacked(false);
+            if (turnPlayer.getField().getMonsterZone().get(i).getPosition().equalsIgnoreCase("Defence")) {
+                turnPlayer.getField().getMonsterZone().get(i).setHaveAttacked(true);
+            } else {
+                turnPlayer.getField().getMonsterZone().get(i).setHaveAttacked(false);
+            }
         }
 
         if (turnPlayer.equals(player1)) {

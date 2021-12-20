@@ -2,7 +2,7 @@ package com.company;
 
 public class Player {
     private String name;
-    private int HP = 5000;
+    private int HP = 5000   ;
     private Deck deck;
     private Hand hand;
     private Field field;
@@ -37,6 +37,14 @@ public class Player {
         System.out.println("------------------ " + name + "'s Cards in Field" + " ------------------    \n");
         for (int i = 0; i < field.getMonsterZone().size(); i++) {
             field.getMonsterZone().get(i).printAll2();
+        }
+        System.out.println("");
+    }
+
+    public void printFieldDuringBattle () {
+        System.out.println("------------------ " + name + "'s Cards in Field" + " ------------------    \n");
+        for (int i = 0; i < field.getMonsterZone().size(); i++) {
+            field.getMonsterZone().get(i).printAll3();
         }
         System.out.println("");
     }

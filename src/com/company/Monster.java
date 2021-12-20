@@ -32,6 +32,15 @@ public class Monster extends Card {
         System.out.println("Position: " + position);
     }
 
+    @Override
+    public void printAll3() {
+        super.printAll();
+        System.out.print("Att: " + attackPower + " ");
+        System.out.print("Def: " + defensePower + " ");
+        System.out.print("Position: " + position + " ");
+        System.out.println("Attacked: " + getAttacked());
+    }
+
     public String getPosition() {
         return position;
     }
