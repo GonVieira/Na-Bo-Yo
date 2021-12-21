@@ -2,11 +2,13 @@ package com.company.ThePlayer;
 
 public class Player {
     private String name;
-    private int HP = 8000   ;
+    private int HP = 3000;
     private Deck deck;
     private Hand hand;
     private Field field;
     private final int firstCardsDrawLimit = 5;
+    public static final String ANSI_GREEN = "\u001B[32m";
+    public static final String ANSI_RESET = "\u001B[0m";
 
     public Player (String name) {
         this.name = name;
@@ -26,29 +28,29 @@ public class Player {
 
     //Print the player hands with the card information.
     public void printHand () {
-        System.out.println("----------------- " + name + "'s Cards in Hand" + " ------------------    \n");
+        System.out.println(ANSI_GREEN + "------------------------- " + name + "'s Cards in Hand" + " -------------------------    \n" + ANSI_RESET);
         for (int i = 0; i < hand.getHand().size(); i++) {
             hand.getHand().get(i).printAll();
         }
-        System.out.println("-------------------------------------------------------------------------");
+        System.out.println(ANSI_GREEN + "-------------------------------------------------------------------------" + ANSI_RESET);
     }
 
     //Method for printing the player field with the monster information
     public void printField () {
-        System.out.println("------------------ " + name + "'s Cards in Field" + " ------------------    \n");
+        System.out.println(ANSI_GREEN + "------------------------ " + name + "'s Cards in Field" + " ------------------------     \n" + ANSI_RESET);
         for (int i = 0; i < field.getMonsterZone().size(); i++) {
             field.getMonsterZone().get(i).printAll2();
         }
-        System.out.println("------------------------------------------------------------------------");
+        System.out.println(ANSI_GREEN + "------------------------------------------------------------------------" + ANSI_RESET);
     }
 
     //Method for printing the monster with important information during the battle phase.
     public void printFieldDuringBattle () {
-        System.out.println("------------------ " + name + "'s Cards in Field" + " ------------------    \n");
+        System.out.println(ANSI_GREEN + "------------------ " + name + "'s Cards in Field" + " ------------------    \n" + ANSI_RESET);
         for (int i = 0; i < field.getMonsterZone().size(); i++) {
             field.getMonsterZone().get(i).printAll3();
         }
-        System.out.println("");
+        System.out.println(ANSI_GREEN + "------------------------------------------------------------------------" + ANSI_RESET);
     }
 
     //The cards to be placed in the hand of each player in the beginning of the game.

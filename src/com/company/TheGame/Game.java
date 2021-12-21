@@ -180,7 +180,7 @@ public class Game {
         }
         if (move.equalsIgnoreCase("Proceed to battle") || move.equalsIgnoreCase("Proceed")) {
                 startStep();
-                while (turnPlayer.checkIfMonsterCanAttack()) {
+                while (turnPlayer.checkIfMonsterCanAttack() && opponent.getHP() > 0) {
                     System.out.println("Please choose a monster from your field to attack with.");
                     String monsterName = sc.nextLine();
                         while (!turnPlayer.checkIfThereIsMonsterInField(monsterName)) {
